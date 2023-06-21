@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  background: linear-gradient(to right, #0ea5e9, #99f6e4, #fef9c3);
+  font-family: "Darumadrop One", cursive;
+}
+
+/* button {
+  background-color: #2980b9;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #6dd5fa;
+} */

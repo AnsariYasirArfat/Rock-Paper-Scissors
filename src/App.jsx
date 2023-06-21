@@ -4,9 +4,9 @@ const App = () => {
   const choices = ["rock", "paper", "scissors"];
   const [userChoice, setUserChoice] = useState("");
   const [computerChoice, setComputerChoice] = useState("");
-  const [roundResult, setRoundResult] = useState("Start the game");
+  const [roundResult, setRoundResult] = useState("Round 1");
   const [userScore, setUserScore] = useState(0);
-  const [finalResult, setFinalResult] = useState("");
+  const [finalResult, setFinalResult] = useState("Play The Rounds");
   const [computerScore, setComputerScore] = useState(0);
   const [roundCount, setRoundCount] = useState(1);
 
@@ -69,18 +69,24 @@ const App = () => {
       setRoundCount((prevCount) => prevCount + 1);
       setUserChoice("");
       setComputerChoice("");
-      setRoundResult("Start the game");
+      setRoundResult(`Round ${roundCount + 1}`);
     }
   };
 
   const handlePlayAgain = () => {
     setUserChoice("");
     setComputerChoice("");
-    setRoundResult("Start the game");
+    setRoundResult("Round 1");
     setUserScore(0);
     setComputerScore(0);
     setRoundCount(1);
-    setFinalResult("");
+    setFinalResult(
+      finalResult.includes("Computer")
+        ? "Computer Won last Game"
+        : finalResult.includes("tie")
+        ? "It's a tie"
+        : "You won the Last Game"
+    );
   };
 
   return (
@@ -121,7 +127,7 @@ const App = () => {
           className="p-4 bg-blue-500 text-white font-bold rounded-md"
           onClick={handleNextRound}
         >
-          Next Round
+          Go To Next Round {roundCount + 1}
         </button>
       )}
       <p className="text-lg">Round: {roundCount} / 3</p>

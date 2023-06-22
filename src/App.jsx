@@ -136,26 +136,29 @@ const App = () => {
       <h1 className="text-center p-4 bg-sky-300 text-2xl lg:text-4xl text-sky-900 font-bold mb-5 lg:mb-20">
         Rock Paper Scissors
       </h1>
-      <h1 className="text-center text-xl md:text-2xl lg:text-4xl font-bold text-teal-700 mb-2 lg:mb-8 h-20 ">
+      <h1 className="text-center text-xl md:text-2xl lg:text-4xl font-bold text-teal-700 mb-2 h-20 ">
         {finalResult}
       </h1>
-      <div className="grid grid-cols-1 lg:grid-cols-3 items-center mb-4">
-        <p className="text-base md:text-xl font-bold justify-self-center mb-4 text-center">
+      <p className="text-xl md:text-3xl xl:text-4xl font-semibold text-center mb-4 lg:mb-8">
+        Round: {roundCount} / 3
+      </p>
+      <div className="grid grid-cols-1 lg:grid-cols-3 items-center ">
+        <p className="text-base md:text-xl font-bold justify-self-center mb-4 lg:mb-0 text-center">
           Your Score: {userScore}
         </p>
 
         {roundResult && (
-          <p className="text-xl md:text-2xl lg:text-3xl font-bold text-center text-sky-700 justify-self-center mb-4 ">
+          <p className="text-xl md:text-2xl lg:text-3xl font-bold text-center text-sky-700 justify-self-center mb-4 lg:mb-0">
             {roundResult}
           </p>
         )}
 
-        <p className="text-base md:text-xl font-bold justify-self-center text-center mb-4">
+        <p className="text-base md:text-xl font-bold justify-self-center text-center mb-4 lg:mb-0">
           Computer&apos;s Score: {computerScore}
         </p>
       </div>
 
-      <div className="grid  grid-cols-1 md:grid-cols-3 items-center mb-10 lg:mb-5 h-96">
+      <div className="grid  grid-cols-1 md:grid-cols-3 items-center  h-96">
         <button
           className={`justify-self-center lg:justify-self-end p-2 bg-sky-500 text-white font-bold rounded-full w-24 h-24 md:w-32 md:h-32 lg:w-48 lg:h-48 ease-in-out duration-500 shadow-xl shadow-sky-500 hover:shadow-2xl hover:shadow-sky-950  ${
             userChoice ? "hidden" : ""
@@ -243,9 +246,6 @@ const App = () => {
           </p>
         )}
       </div>
-      <p className="text-xl md:text-3xl font-semibold text-center">
-        Round: {roundCount} / 3
-      </p>
     </div>
   );
 };

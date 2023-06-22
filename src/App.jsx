@@ -132,31 +132,32 @@ const App = () => {
   };
 
   return (
-    <div className="container mx-10 py-8">
-      <h1 className="text-4xl text-sky-900 font-bold mb-20">
+    <div className="container p-4 lg:p-8 mx-auto">
+      <h1 className="text-center p-4 bg-sky-300 text-2xl lg:text-4xl text-sky-900 font-bold mb-5 lg:mb-20">
         Rock Paper Scissors
       </h1>
-      <h1 className="text-center text-4xl font-bold text-teal-700  mb-20">
+      <h1 className="text-center text-xl md:text-2xl lg:text-4xl font-bold text-teal-700 mb-2 lg:mb-8 h-20 ">
         {finalResult}
       </h1>
-      <div className="grid grid-cols-3 items-center h-24">
-        <p className="text-xl font-bold justify-self-center">
+      <div className="grid grid-cols-1 lg:grid-cols-3 items-center mb-4">
+        <p className="text-base md:text-xl font-bold justify-self-center mb-4 text-center">
           Your Score: {userScore}
         </p>
 
         {roundResult && (
-          <p className="text-3xl font-bold mb-4 text-sky-700 justify-self-center">
+          <p className="text-xl md:text-2xl lg:text-3xl font-bold text-center text-sky-700 justify-self-center mb-4 ">
             {roundResult}
           </p>
         )}
 
-        <p className="text-xl font-bold justify-self-center">
+        <p className="text-base md:text-xl font-bold justify-self-center text-center mb-4">
           Computer&apos;s Score: {computerScore}
         </p>
       </div>
-      <div className="grid grid-cols-3 items-center h-56 mb-20">
+
+      <div className="grid  grid-cols-1 md:grid-cols-3 items-center mb-10 lg:mb-5 h-96">
         <button
-          className={`justify-self-end p-2 bg-sky-500 text-white font-bold rounded-full w-48 h-48 ease-in-out duration-500 shadow-xl shadow-sky-500 hover:shadow-2xl hover:shadow-sky-950  ${
+          className={`justify-self-center lg:justify-self-end p-2 bg-sky-500 text-white font-bold rounded-full w-24 h-24 md:w-32 md:h-32 lg:w-48 lg:h-48 ease-in-out duration-500 shadow-xl shadow-sky-500 hover:shadow-2xl hover:shadow-sky-950  ${
             userChoice ? "hidden" : ""
           }`}
           onClick={() => handleUserChoice(0)}
@@ -172,11 +173,11 @@ const App = () => {
             />
           )}
           {!isHoveredOnRockButton && (
-            <span className="text-xl font-bold">Rock</span>
+            <span className="text-base md:text-xl font-bold">Rock</span>
           )}
         </button>
         <button
-          className={`justify-self-center p-2 bg-sky-500 text-white font-bold rounded-full w-48 h-48 ease-in-out duration-500 shadow-xl shadow-sky-500 hover:shadow-2xl hover:shadow-sky-950  ${
+          className={`justify-self-center lg:justify-self-center p-2 bg-sky-500 text-white font-bold rounded-full w-24 h-24 md:w-32 md:h-32 lg:w-48 lg:h-48 ease-in-out duration-500 shadow-xl shadow-sky-500 hover:shadow-2xl hover:shadow-sky-950  ${
             userChoice ? "hidden" : ""
           }`}
           onClick={() => handleUserChoice(1)}
@@ -192,11 +193,11 @@ const App = () => {
             />
           )}
           {!isHoveredOnPaperButton && (
-            <span className="text-xl font-bold">Paper</span>
+            <span className="text-base md:text-xl font-bold">Paper</span>
           )}
         </button>
         <button
-          className={`justify-self-start p-2 bg-sky-500 text-white font-bold rounded-full w-48 h-48 ease-in-out duration-500 shadow-xl shadow-sky-500 hover:shadow-2xl hover:shadow-sky-950  ${
+          className={`justify-self-center lg:justify-self-start p-2 bg-sky-500 text-white font-bold rounded-full w-24 h-24 md:w-32 md:h-32 lg:w-48 lg:h-48 ease-in-out duration-500 shadow-xl shadow-sky-500 hover:shadow-2xl hover:shadow-sky-950  ${
             userChoice ? "hidden" : ""
           }`}
           onClick={() => handleUserChoice(2)}
@@ -212,17 +213,17 @@ const App = () => {
             />
           )}
           {!isHoveredOnScissorsButton && (
-            <span className="text-xl font-bold">Scissors</span>
+            <span className="text-base md:text-xl font-bold">Scissors</span>
           )}
         </button>
         {userChoice && (
-          <p className=" justify-self-center text-3xl font-bold text-yellow-200  mb-4">
+          <p className="justify-self-center text-xl md:text-2xl xl:text-3xl font-bold text-yellow-500 ">
             You chose: {userChoice}
           </p>
         )}
         {roundCount < 3 && userChoice && computerChoice && (
           <button
-            className="justify-self-center p-4 bg-sky-500 hover:bg-sky-600 text-xl text-yellow-200 font-bold rounded-full w-48 h-48 "
+            className="justify-self-center p-4 bg-sky-500 hover:bg-sky-600  text-base md:text-xl text-yellow-200 font-bold rounded-full w-52 md:w-60"
             onClick={handleNextRound}
           >
             Go To Next Round {roundCount + 1}
@@ -230,20 +231,19 @@ const App = () => {
         )}
         {roundCount === 3 && userChoice && computerChoice && (
           <button
-            className="justify-self-center p-4 bg-yellow-200 hover:bg-yellow-300 text-xl text-sky-800 font-bold rounded-full w-48 h-48 "
+            className="justify-self-center p-4 bg-yellow-200 hover:bg-yellow-300 text-base md:text-xl text-sky-800 font-bold rounded-full w-52  md:w-60"
             onClick={handlePlayAgain}
           >
             Play Again
           </button>
         )}
         {computerChoice && (
-          <p className="justify-self-center text-3xl font-bold text-teal-700 mb-4">
+          <p className="justify-self-center text-xl md:text-xl lg:text-2xl xl:text-3xl font-bold text-teal-700 ">
             Computer chose: {computerChoice}
           </p>
         )}
       </div>
-
-      <p className="text-3xl font-semibold text-center">
+      <p className="text-xl md:text-3xl font-semibold text-center">
         Round: {roundCount} / 3
       </p>
     </div>

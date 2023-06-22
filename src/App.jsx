@@ -7,7 +7,7 @@ const App = () => {
   const choices = ["rock", "paper", "scissors"];
   const [userChoice, setUserChoice] = useState("");
   const [computerChoice, setComputerChoice] = useState("");
-  const [roundResult, setRoundResult] = useState("Round 1!");
+  const [roundResult, setRoundResult] = useState("Round 1");
   const [userScore, setUserScore] = useState(0);
   const [finalResult, setFinalResult] = useState("Play The Rounds");
   const [computerScore, setComputerScore] = useState(0);
@@ -40,6 +40,7 @@ const App = () => {
     setIsHoveredOnScissorsButton(false);
   };
 
+  // Input From User's choice
   const handleUserChoice = (userInput) => {
     setUserChoice(choices[userInput]);
     console.log(`userChoice ${choices[userInput]}`);
@@ -47,7 +48,7 @@ const App = () => {
   };
 
   const generateComputerChoice = () => {
-    const randomIndex = Math.floor(Math.random() * choices.length);
+    const randomIndex = Math.floor(Math.random() * 3);
     setComputerChoice(choices[randomIndex]);
     console.log(`ComputerChoice ${choices[randomIndex]}`);
   };
@@ -59,29 +60,31 @@ const App = () => {
         (userChoice === "paper" && computerChoice === "rock") ||
         (userChoice === "scissors" && computerChoice === "paper")
       ) {
-        setRoundResult("You win!");
-        setUserScore((prevScore) => prevScore + 1);
+        setRoundResult(`You win! Round ${roundCount}.`);
+
+        setUserScore(userScore + 1);
       } else if (userChoice === computerChoice) {
-        setRoundResult("It's a tie!");
+        setRoundResult(`Tie! No winner in Round ${roundCount}.`);
       } else {
-        setRoundResult("Computer wins!");
-        setComputerScore((prevScore) => prevScore + 1);
+        setRoundResult(`Computer Wins! Round ${roundCount}.`);
+
+        setComputerScore(computerScore + 1);
       }
     }
-  }, [userChoice, computerChoice]);
+  }, [userChoice, computerChoice, roundCount]);
 
   useEffect(() => {
-    if (roundCount === 3) {
+    if (roundCount === 3 && userChoice && computerChoice) {
       // Final result
       if (userScore > computerScore) {
-        setFinalResult("Congratulations! You won the game!");
+        setFinalResult("Congratulations! You are the winner of the game.");
       } else if (userScore < computerScore) {
-        setFinalResult("Computer won the game. Better luck next time!");
-      } else {
-        setFinalResult("It's a tie! The game ended in a draw.");
+        setFinalResult("Computer Wins the Game. Better luck next time.");
+      } else if (userScore === computerScore) {
+        setFinalResult("Draw! The game ended in a tie.");
       }
     }
-  }, [userScore, computerScore]);
+  }, [roundCount, userScore, computerScore, userChoice, computerChoice]);
 
   const handleNextRound = () => {
     if (roundCount === 3) {
@@ -89,18 +92,25 @@ const App = () => {
       setUserScore(0);
       setComputerScore(0);
       setRoundCount(1);
-      setFinalResult(""); // Reset the final result here
 
       // Reset user and computer choices
       setUserChoice("");
       setComputerChoice("");
-      setRoundResult("Start the game");
     } else {
-      setRoundCount((prevCount) => prevCount + 1);
       setUserChoice("");
       setComputerChoice("");
-      setRoundResult(`Round ${roundCount + 1}!`);
+      setRoundCount((prevCount) => prevCount + 1);
+      setRoundResult(`Round ${roundCount + 1}`);
     }
+    setFinalResult(() => {
+      if (userScore > computerScore) {
+        return "You are winning!";
+      } else if (userScore < computerScore) {
+        return "Computer's winning";
+      } else {
+        return "No one Winning, Keep playing";
+      }
+    });
   };
 
   const handlePlayAgain = () => {
@@ -110,21 +120,23 @@ const App = () => {
     setUserScore(0);
     setComputerScore(0);
     setRoundCount(1);
-    setFinalResult(
-      finalResult.includes("Computer")
-        ? "Computer Won The Last Game"
-        : finalResult.includes("tie")
-        ? "No One Won The Last game"
-        : "You Won The Last Game"
-    );
+    setFinalResult(() => {
+      if (userScore > computerScore) {
+        return "You Won The Last Game";
+      } else if (userScore < computerScore) {
+        return "Computer Won The Last Game";
+      } else {
+        return "No One Won The Last game";
+      }
+    });
   };
 
   return (
     <div className="container mx-10 py-8">
-      <h1 className="text-4xl text-sky-900 font-bold mb-10">
+      <h1 className="text-4xl text-sky-900 font-bold mb-20">
         Rock Paper Scissors
       </h1>
-      <h1 className="text-center text-3xl font-bold text-teal-700  mb-10">
+      <h1 className="text-center text-4xl font-bold text-teal-700  mb-20">
         {finalResult}
       </h1>
       <div className="grid grid-cols-3 items-center h-24">
@@ -133,7 +145,7 @@ const App = () => {
         </p>
 
         {roundResult && (
-          <p className="text-4xl font-bold mb-4 text-sky-700 justify-self-center">
+          <p className="text-3xl font-bold mb-4 text-sky-700 justify-self-center">
             {roundResult}
           </p>
         )}
